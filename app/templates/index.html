@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block css%}
+<link rel="stylesheet" type="../static/css/base.css">
+{% endblock%}
+
+{% block content%}
+
+<h1 class="text-center py-5"> index </h1>
+
+<div class="row gt-0 justify-content-center">
+    <div class="col-8  text-center">
+        <div class="table">
+            <h2>Favoritos</h2>
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">usuario</th>
+                        <th scope="col">Universidad</th>
+                        <th scope="col">Facultad</th>
+                        <th scope="col">Nombre de la beca</th>
+                        <th scope="col">Fundacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for favoritos in favoritos %}
+                    <tr class=" base_datos">
+                        <td>{{ favoritos.usuario}}</td>
+                        <td>{{ favoritos.Configuracion_Becas.Union_U_F.univeridad}}</td>
+                        <td>{{ favoritos.Configuracion_Becas.Union_U_F.facultad}}</td>
+                        <td>{{ favoritos.Configuracion_Becas.Beca}}</td>
+                        <td>{{ favoritos.Configuracion_Becas.Fundacion}}</td>
+                    {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{%block script%}
+
+<!--javascritp-->
+<script src=""></script>
+<!--jquaery-->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+{% endblock %}

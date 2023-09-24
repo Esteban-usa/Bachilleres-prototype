@@ -28,7 +28,8 @@ class Union_U_F(models.Model):
             models.UniqueConstraint(fields=['univeridad', 'facultad'], name='unique_foraneas_union')
         ]
     def __str__(self):
-        return str(self.univeridad)+"_"+str(self.facultad)
+        fila = "Universidad: "+str(self.univeridad)+" / Facultad: "+str(self.facultad)
+        return fila
     
 class Fundacion(models.Model):
     Entidad = 'Entidad'
@@ -67,7 +68,8 @@ class Configuracion_Becas(models.Model):
             models.UniqueConstraint(fields=['Union_U_F', 'Beca','Fundacion'], name='unique_foraneas_configuracion')
         ]
     def __str__(self):
-        return str(self.Union_U_F)+"_"+str(self.Beca)+"_"+str(self.Fundacion)
+        fila = "Union : "+str(self.Union_U_F.univeridad)+"-"+str(self.Union_U_F.facultad)+" / Beca: "+str(self.Beca)+" / Fundacion: "+str(self.Fundacion)
+        return fila
 
     
 class Favoritos (models.Model):
@@ -85,6 +87,7 @@ class Favoritos (models.Model):
             models.UniqueConstraint(fields=['usuario', 'Configuracion_Becas','tipo'], name='unique_foraneas_favoritos'),
         ]
     def __str__(self):
-        return self.tipo+"_"+str(self.usuario)
+        fila = "Tipo : "+str(self.tipo)+" / Usuario: "+str(self.usuario)
+        return fila
 
 
