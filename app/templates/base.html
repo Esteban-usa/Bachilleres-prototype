@@ -17,10 +17,15 @@
 
 <body>
     <header>
+
         <nav class="nav justify-content-center py-5">
-            <a class="nav-link active" href="{% url 'salir' %}" aria-current="page"><a name="" id="" class="btn btn-primary"
-                    role="button">cerrar seccion</a></a>
+            <a class="nav-link active" href="{% url 'salir' %}" aria-current="page">cerrar seccion</a>
         </nav>
+
+        {% if user.is_authenticated %}
+        <h2 class="text-center"> usuario : {{ user.username }}</h2>
+        {% endif %}
+
     </header>
     <main>
         {% block content %} {% endblock %}
@@ -40,4 +45,3 @@
 </body>
 
 </html>
-

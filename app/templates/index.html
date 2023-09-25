@@ -8,10 +8,25 @@
 
 <h1 class="text-center py-5"> index </h1>
 
+<p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#boton-queoprime" aria-expanded="false"
+            aria-controls="boton-queoprime">
+        sin oprimir la
+    </button>
+</p>
+<div class="collapse" id="boton-queoprime">
+    <ul>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+</div>
+
+
 <div class="row gt-0 justify-content-center">
     <div class="col-8  text-center">
         <div class="table">
-            <h2>Favoritos</h2>
+            <h2>Favoritos usuario</h2>
             <table class="table table-primary">
                 <thead>
                     <tr>
@@ -24,27 +39,73 @@
                 </thead>
                 <tbody>
                     {% for favoritos in favoritos %}
+
                     <tr class=" base_datos">
                         <td>{{ favoritos.usuario}}</td>
                         <td>{{ favoritos.Configuracion_Becas.Union_U_F.univeridad}}</td>
                         <td>{{ favoritos.Configuracion_Becas.Union_U_F.facultad}}</td>
                         <td>{{ favoritos.Configuracion_Becas.Beca}}</td>
                         <td>{{ favoritos.Configuracion_Becas.Fundacion}}</td>
-                    {% endfor %}
+                        {% endfor %}
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div class="table">
+            <h2>Becas general</h2>
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">nombre</th>
+                        <th scope="col">tipo</th>
+                        <th scope="col">monto</th>
+                        <th scope="col">Documentos</th>
+                        <th scope="col">Requisitos</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for becas in becas %}
+                    <tr class=" base_datos">
+                        <td>{{ becas.nombre}}</td>
+                        <td>{{ becas.tipo}}</td>
+                        <td>{{ becas.monto}}</td>
+                        <td>
+                            {% for Documentos in becas.Documentos.all %}
+                            <ul>
+                                <li>
+                                    {{ Documentos.Descripcion }}
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for Requisitos in becas.Requisitos.all %}
+                            <ul>
+                                <li>
+                                    {{ Requisitos.Descripcion }}
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </td>
+                        <td>{{ becas.Descripcion}}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+       
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
 
-{%block script%}
+    {%block script%}
 
-<!--javascritp-->
-<script src=""></script>
-<!--jquaery-->
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!--javascritp-->
+    <script src=""></script>
+    <!--jquaery-->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
-{% endblock %}
+    {% endblock %}

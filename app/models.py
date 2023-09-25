@@ -42,7 +42,16 @@ class Fundacion(models.Model):
     tipo =  models.CharField(max_length=20,choices=OPCIONES_TIPO,default=Universidad)
     def __str__(self):
         return self.nombre
-
+    
+class Requisitos (models.Model):
+    Descripcion = models.CharField(max_length=100)
+    def __str__(self):
+        return self.Descripcion
+    
+class Documentos (models.Model):
+    Descripcion = models.CharField(max_length=100)
+    def __str__(self):
+        return self.Descripcion
     
 class Beca (models.Model):
     Nacional = 'Nacional'
@@ -54,6 +63,9 @@ class Beca (models.Model):
     nombre = models.CharField(max_length=30)
     tipo = models.CharField(max_length=10,choices=OPCIONES_TIPO,default=Nacional)
     monto = models.IntegerField()
+    Documentos = models.ManyToManyField(Documentos)
+    Requisitos = models.ManyToManyField(Requisitos)
+    Descripcion = models.CharField(max_length=1000)
     class Meta:
         db_table = 'Becas'
     def __str__(self):
@@ -72,7 +84,7 @@ class Configuracion_Becas(models.Model):
         return fila
 
     
-class Favoritos (models.Model):
+class Becas_Fav (models.Model):
     facultad = 'facultad'
     beca = 'beca'
     OPCIONES_TIPO = [
@@ -89,5 +101,11 @@ class Favoritos (models.Model):
     def __str__(self):
         fila = "Tipo : "+str(self.tipo)+" / Usuario: "+str(self.usuario)
         return fila
+    
+class Facultad_fav(models.Model):
+    Facultad = models.ForeignKey(Facultad,on_delete=models.CASCADE)
+    Estudiante = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return "Facultad: "+str(self.Facultad)+" / Estudiante: "+str(self.Estudiante)
 
 
